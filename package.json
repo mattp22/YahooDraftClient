@@ -4,7 +4,8 @@
   "description": "application to connect to yahoo draft client",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "npm start"
   },
   "repository": {
     "type": "git",
