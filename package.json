@@ -1,0 +1,29 @@
+{
+  "name": "yahoodraftclient",
+  "version": "1.0.0",
+  "description": "application to connect to yahoo draft client",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattp22/YahooDraftClient.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Mongo",
+    "Express",
+    "Angular",
+    "Nodejs"
+  ],
+  "author": "Matt Preziotti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattp22/YahooDraftClient/issues"
+  },
+  "homepage": "https://github.com/mattp22/YahooDraftClient#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
