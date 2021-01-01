@@ -16,8 +16,7 @@ app.get('/auth/yahoo', function(req, res) {
     var queryParams = qs.stringify({
       client_id: clientId,
       redirect_uri: redirectUri,
-      response_type: 'code',
-      nonce: 'YihsFwGKgt3KJUh6tPs2'
+      response_type: 'code'
     });
   
     res.redirect(authorizationUrl + '?' + queryParams);
@@ -39,9 +38,21 @@ app.get('/auth/yahoo/callback', function(req, res) {
     };
 
     request.post(options, function(err, response, body) {
-        res.send('guid: ' + body.xoauth_yahoo_guid + '\naccessToken: ' + body.access_token);
+
+        var options2 = {
+            url: 'https://fantasysports.yahooapis.com/fantasy/v2/',
+            headers: { Authorization: 'Bearer ' + body.access_token },
+            rejectUnauthorized: false,
+            json: true
+        };
+
+        request.get(options2, function(err, response, body) {
+            res.send(body);
+        });
     });
 });
+
+
 
 // startup our app
 app.listen(process.env.PORT || port, ()=> console.log(`Example app listening on port ${port}!`));
