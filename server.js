@@ -7,7 +7,7 @@ const request = require('request');
 const port = 3000;
 app.get('/', (req, res) => res.send('Welcome to Tutorialspoint!'));
 
-var clientId = process.env.CLIENT_ID || 'dj0yJmk9UGkyUXJdj0yJmk9Z2o5WjJMa2E2TUx0JmQ9WVdrOVdtaHdZMGMwUm1rbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYxwQ21JWHFNJmQ9WVdrOVV6WjNkMEpZY3pJbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTg0';
+var clientId = process.env.CLIENT_ID || 'dj0yJmk9Z2o5WjJMa2E2TUx0JmQ9WVdrOVdtaHdZMGMwUm1rbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYx';
 var clientSecret = process.env.CLIENT_SECRET || '8bccd1d9bcd18dbef78ca7111caa6970f4ef32a9';
 var redirectUri = process.env.REDIRECT_URI || 'https://draft-client.herokuapp.com/auth/yahoo/callback';
 app.get('/auth/yahoo', function(req, res) {
