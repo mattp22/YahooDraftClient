@@ -26,7 +26,7 @@ app.get('/auth/yahoo', function(req, res) {
       response_type: 'code'
     });
   
-    res.redirect(authorizationUrl + '?' + queryParams);
+    return res.redirect(authorizationUrl + '?' + queryParams);
 });
 
 app.get('/auth/yahoo/callback', function(req, res) {
@@ -46,20 +46,21 @@ app.get('/auth/yahoo/callback', function(req, res) {
 
     request.post(options, function(err, response, body) {
         res.cookie('auth', body.access_token);
-        res.render('form');
+        return res.render('form');
     });
 });
 
 app.get('/submit-form', function(req, res) {
+    const resource = req.query.resource;
     var options = {
-        url: `https://fantasysports.yahooapis.com/fantasy/v2/${req.query.resource}`,
+        url: `https://fantasysports.yahooapis.com/fantasy/v2/${resource}`,
         headers: { Authorization: 'Bearer ' + req.cookies.auth },
         rejectUnauthorized: false,
         json: true
     };
 
     request.get(options, function(err, response, body) {
-        res.send(body);
+        return res.render('form', {resource: resource, response: response});
     });
 });
 
