@@ -16,7 +16,8 @@ app.get('/auth/yahoo', function(req, res) {
     var queryParams = qs.stringify({
       client_id: clientId,
       redirect_uri: redirectUri,
-      response_type: 'code'
+      response_type: 'code',
+      nonce: 'YihsFwGKgt3KJUh6tPs2'
     });
   
     res.redirect(authorizationUrl + '?' + queryParams);
