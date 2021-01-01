@@ -40,7 +40,7 @@ app.get('/auth/yahoo/callback', function(req, res) {
     request.post(options, function(err, response, body) {
 
         var options2 = {
-            url: 'https://fantasysports.yahooapis.com/fantasy/v2/',
+            url: 'https://fantasysports.yahooapis.com/fantasy/v2/game/nfl',
             headers: { Authorization: 'Bearer ' + body.access_token },
             rejectUnauthorized: false,
             json: true
