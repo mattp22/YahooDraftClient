@@ -60,7 +60,7 @@ app.get('/submit-form', function(req, res) {
     };
 
     request.get(options, function(err, response, body) {
-        return res.render('form', {resource: resource, response: response});
+        return res.render('form', { resource: resource, response: body });
     });
 });
 
