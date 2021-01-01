@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/mattp22/YahooDraftClient#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "request": "^2.88.2"
   }
 }
