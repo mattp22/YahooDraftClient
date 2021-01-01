@@ -1,11 +1,18 @@
 // modules =================================================
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
 const qs = require('querystring');
 const request = require('request');
-// set our port
-const port = 3000;
-app.get('/', (req, res) => res.send('Welcome to Tutorialspoint!'));
+const cookieParser = require('cookie-parser');
+
+const app = express();
+
+app.set('view engine', 'pug');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+// Homepage
+app.get('/', (req, res) => res.render('form'));
 
 var clientId = process.env.CLIENT_ID || 'dj0yJmk9Z2o5WjJMa2E2TUx0JmQ9WVdrOVdtaHdZMGMwUm1rbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYx';
 var clientSecret = process.env.CLIENT_SECRET || '8bccd1d9bcd18dbef78ca7111caa6970f4ef32a9';
@@ -38,21 +45,24 @@ app.get('/auth/yahoo/callback', function(req, res) {
     };
 
     request.post(options, function(err, response, body) {
-
-        var options2 = {
-            url: 'https://fantasysports.yahooapis.com/fantasy/v2/leagues',
-            headers: { Authorization: 'Bearer ' + body.access_token },
-            rejectUnauthorized: false,
-            json: true
-        };
-
-        request.get(options2, function(err, response, body) {
-            res.send(body);
-        });
+        res.cookie('auth', body.access_token);
+        res.render('form');
     });
 });
 
+app.get('/submit-form', function(req, res) {
+    var options = {
+        url: `https://fantasysports.yahooapis.com/fantasy/v2/${req.query.resource}`,
+        headers: { Authorization: 'Bearer ' + req.cookies.auth },
+        rejectUnauthorized: false,
+        json: true
+    };
 
+    request.get(options2, function(err, response, body) {
+        res.send(body);
+    });
+});
 
 // startup our app
+const port = 3000;
 app.listen(process.env.PORT || port, ()=> console.log(`Example app listening on port ${port}!`));
