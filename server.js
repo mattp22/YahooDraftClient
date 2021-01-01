@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Homepage
-app.get('/', (req, res) => res.render('form'));
+app.get('/', (req, res) => res.redirect('/auth/yahoo'));
 
 var clientId = process.env.CLIENT_ID || 'dj0yJmk9Z2o5WjJMa2E2TUx0JmQ9WVdrOVdtaHdZMGMwUm1rbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYx';
 var clientSecret = process.env.CLIENT_SECRET || '8bccd1d9bcd18dbef78ca7111caa6970f4ef32a9';
@@ -58,7 +58,7 @@ app.get('/submit-form', function(req, res) {
         json: true
     };
 
-    request.get(options2, function(err, response, body) {
+    request.get(options, function(err, response, body) {
         res.send(body);
     });
 });
